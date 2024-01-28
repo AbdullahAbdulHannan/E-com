@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Card from '../components/Card';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Slideshow from '../components/Slider';
 import Loader from '../components/Loader/Loader';
 
@@ -19,6 +19,10 @@ const Details = (id) => {
     return (
       <div>
         {products?
+        <>
+        <Link to={{pathname:'/'}}>
+      <button className=' text-5xl font-bold m-6 w-28'>⬅</button>
+        </Link>
         <div className=' mt-[16%] mx-5 flex border border-orange-500 p-16'>
           
        <Slideshow image1={products.images[0]} image2={products.images[1]} image3={products.images[2]} image4={products.images[3]} />
@@ -30,9 +34,8 @@ const Details = (id) => {
 
        </div>
         </div>
-        
-        
-        :<Loader/>}
+        </>
+:<Loader/>}
       </div>
     );
   }
