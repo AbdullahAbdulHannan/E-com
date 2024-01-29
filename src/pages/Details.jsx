@@ -4,6 +4,7 @@ import Card from '../components/Card';
 import { Link, useParams } from 'react-router-dom';
 import Slideshow from '../components/Slider';
 import Loader from '../components/Loader/Loader';
+import { Rating } from '@mui/material';
 
 const Details = (id) => {
     const [products, setProducts] = useState(null);
@@ -30,6 +31,8 @@ const Details = (id) => {
             <h1 className=' font-bold my-5'>{products.title}</h1>
             <p>{products.description}</p>
             <h1 className='font-bold my-5'>Brand: <span className=' font-light'>{products.brand}</span></h1>
+      <Rating name="read-only" value={products.rating} readOnly />
+      <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{products.rating}</span>
             <h1 className=' font-bold my-5'>${products.price}</h1>
 
        </div>

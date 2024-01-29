@@ -2,11 +2,11 @@ import React from 'react'
 import './loader.css'
 const Loader = () => {
   return (
-<div class="loader mx-[45%] my-[23%]">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
+<div className="loader mx-[45%] my-[23%]">
+    <div className="circle"></div>
+    <div className="circle"></div>
+    <div className="circle"></div>
+    <div className="circle"></div>
 </div>
   )
 }

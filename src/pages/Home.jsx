@@ -12,7 +12,7 @@ const Home = () => {
     }, []);
   
     return (
-      <div>
+      <div className=' grid grid-cols-3 gap-2'>
         {products.map((product, index) => (
           <Card
             key={index}
@@ -23,7 +23,8 @@ const Home = () => {
             image={product.images[0]}
             productId={product.id}
           />
-        ))}
+          
+          ))}
       </div>
     );
   }
