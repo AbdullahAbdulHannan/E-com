@@ -20,10 +20,10 @@ const zoomOutProperties = {
 const  Slideshow = ({image1,image2,image3,image4}) => {
   const images = [image1, image2, image3, image4];
   return (
-    <div className="slide-container w-[24%]">
+    <div className="slide-container md:w-[24%] w-[85%]">
       <Zoom {...zoomOutProperties}>
         {images.map((each, index) => (
-          <img key={index} style={{ width: "100%" }} src={each} />
+          <img key={index} className="w-[100%] m-14 " src={each} />
         ))}
       </Zoom>
     </div>

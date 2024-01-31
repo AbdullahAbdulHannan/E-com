@@ -24,10 +24,10 @@ const Details = (id) => {
         <Link to={{pathname:'/'}}>
       <button className=' text-5xl font-bold m-6 w-28'>⬅</button>
         </Link>
-        <div className=' mt-[16%] mx-5 flex border border-orange-500 p-16'>
+        <div className=' mt-[16%] mx-5 md:flex border border-orange-500 md:p-16 mb-[10%]'>
           
        <Slideshow image1={products.images[0]} image2={products.images[1]} image3={products.images[2]} image4={products.images[3]} />
-       <div className='ms-32 p-4'>
+       <div className='md:ms-32 p-4'>
             <h1 className=' font-bold my-5'>{products.title}</h1>
             <p>{products.description}</p>
             <h1 className='font-bold my-5'>Brand: <span className=' font-light'>{products.brand}</span></h1>

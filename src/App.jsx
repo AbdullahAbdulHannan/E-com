@@ -5,7 +5,17 @@ import Card from './components/Card';
 import Details from './pages/Details';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
+import { useLocation } from 'react-router-dom';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 const App = () => {
   const [products, setProducts] = useState([]);
 
@@ -18,6 +28,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+    <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/details/:productId" element={<Details />} />

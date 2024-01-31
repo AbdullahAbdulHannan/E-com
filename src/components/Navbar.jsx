@@ -18,6 +18,7 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { ShoppingCart } from '@mui/icons-material';
+import Login from './Modal';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -25,14 +26,12 @@ const Search = styled('div')(({ theme }) => ({
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 1),
   },
-  marginLeft: 0,
-  width: '100%',
+  width: '100%', // Set width to 100% for all screen sizes
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(1),
-    width: 'auto',
+    width: 'auto', // Revert to auto width for larger screens
   },
 }));
-
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
@@ -44,14 +43,11 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-//   color: 'inherit',
-  width: '100%',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       width: '70ch',
       '&:focus': {
         width: '75ch',
@@ -60,46 +56,58 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+function ResponsiveAppBar({onSearch}) {
+  // const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  // const handleCloseNavMenu = () => {
+  //   setAnchorElNav(null);
+  // };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const [searchValue, setSearchValue] = React.useState('');
 
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  const handleSearchSubmit = () => {
+    onSearch(searchValue);
+    <p>{searchValue}</p>
+  };
+
+// const [value, setValue] = React.useState('')
   return (
     <AppBar position="static">
       <Container maxWidth="xl" className='bg-yellow-600'>
         <Toolbar>
-          <img src="/logo1.png" alt="" />
-          <Search>
+          <img src="/logo1.png" alt="" className='md:w-[20%] w-[40%] ' />
+          <Search className='mt-32 md:mt-3'>
             <SearchIconWrapper>
-              <SearchIcon className=' text-gray-400'/>
+              <SearchIcon className=' text-gray-400 '/>
             </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
+              <StyledInputBase
+        placeholder="Search…"
+        inputProps={{ 'aria-label': 'search' }}
+        value={searchValue}
+        onChange={handleSearchChange}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleSearchSubmit();
+          }
+        }}
+      />
           </Search>
-          <div className=' ms-20'>
-            <p>Login</p>
+          <div className=' ms-10 flex justify-between'>
+          <Login/><span className='mx-3'>|</span><p>Signup</p>
           </div>
-          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>  */}
             <IconButton
              size="large"
               aria-label="show 17 new notifications"
@@ -109,32 +117,6 @@ function ResponsiveAppBar() {
               <ShoppingCart className=' ms-6'/>
               </Badge>
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' }
-              }}
-              className=' ms-7'
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          {/* </Box> */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 ,marginLeft:'37px'}}>
