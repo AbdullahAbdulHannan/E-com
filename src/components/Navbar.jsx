@@ -104,6 +104,9 @@ function ResponsiveAppBar({onSearch}) {
             handleSearchSubmit();
             setText(true)
           }
+          else{
+            setText(false)
+          }
         }}
       />
           </Search>
@@ -153,6 +156,7 @@ function ResponsiveAppBar({onSearch}) {
     </AppBar>
     {searchValue && text &&
     <Textsearch text={searchValue}/>}
+    {/* {setSearchValue('')} */}
     </>
   );
 }
