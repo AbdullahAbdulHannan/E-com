@@ -80,7 +80,7 @@ function ResponsiveAppBar({onSearch}) {
   };
 
   const handleSearchSubmit = () => {
-    onSearch(searchValue);
+    onSearch(searchValue)
   };
 
 // const [value, setValue] = React.useState('')
@@ -156,7 +156,6 @@ function ResponsiveAppBar({onSearch}) {
     </AppBar>
     {searchValue && text &&
     <Textsearch text={searchValue}/>}
-    {/* {setSearchValue('')} */}
     </>
   );
 }
