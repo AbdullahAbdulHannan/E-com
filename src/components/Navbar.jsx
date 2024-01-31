@@ -19,6 +19,7 @@ import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { ShoppingCart } from '@mui/icons-material';
 import Login from './Modal';
+import Textsearch from './Textsearch';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -73,18 +74,18 @@ function ResponsiveAppBar({onSearch}) {
     setAnchorElUser(null);
   };
   const [searchValue, setSearchValue] = React.useState('');
-
+ const [text, setText] = React.useState(false)
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
   };
 
   const handleSearchSubmit = () => {
     onSearch(searchValue);
-    <p>{searchValue}</p>
   };
 
 // const [value, setValue] = React.useState('')
   return (
+    <>
     <AppBar position="static">
       <Container maxWidth="xl" className='bg-yellow-600'>
         <Toolbar>
@@ -101,6 +102,7 @@ function ResponsiveAppBar({onSearch}) {
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             handleSearchSubmit();
+            setText(true)
           }
         }}
       />
@@ -149,6 +151,9 @@ function ResponsiveAppBar({onSearch}) {
         </Toolbar>
       </Container>
     </AppBar>
+    {searchValue && text &&
+    <Textsearch text={searchValue}/>}
+    </>
   );
 }
 export default ResponsiveAppBar;
