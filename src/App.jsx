@@ -24,6 +24,7 @@ const App = () => {
       .then((res) => setProducts(res.data.products))
       .catch(err => console.log(err.message));
       console.log(products);
+      alert('Open in Desktop for better response will be updated for mobile screens soon..')
   }, []);
 
   return (
