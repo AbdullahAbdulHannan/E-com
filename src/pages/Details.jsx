@@ -24,7 +24,7 @@ const Details = (id) => {
         <Link to={{pathname:'/'}}>
       <button className=' text-5xl font-bold m-6 w-28'>⬅</button>
         </Link>
-        <div className=' mt-[16%] mx-5 md:flex border border-orange-500 md:p-16 mb-[10%]'>
+        <div className=' mt-[10%] mx-5 md:flex border border-orange-500 md:p-16 mb-[10%]'>
           
        <Slideshow image1={products.images[0]} image2={products.images[1]} image3={products.images[2]} image4={products.images[3]} />
        <div className='md:ms-32 p-4'>
