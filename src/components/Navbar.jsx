@@ -20,6 +20,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { ShoppingCart } from '@mui/icons-material';
 import Login from './Modal';
 import Textsearch from './Textsearch';
+import { Link } from 'react-router-dom';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -59,7 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function ResponsiveAppBar({onSearch}) {
+function ResponsiveAppBar({onSearch,order}) {
   // const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const handleOpenUserMenu = (event) => {
@@ -86,7 +87,7 @@ function ResponsiveAppBar({onSearch}) {
 // const [value, setValue] = React.useState('')
   return (
     <>
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container maxWidth="xl" className='bg-yellow-600'>
         <Toolbar>
           <img src="/logo1.png" alt="" className='md:w-[20%] w-[40%] ' />
@@ -113,15 +114,18 @@ function ResponsiveAppBar({onSearch}) {
           <div className=' ms-10 flex justify-between'>
           <Login/><span className='mx-3'>|</span><p>Signup</p>
           </div>
+          <Link to='/cart'>
+
             <IconButton
              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={1} color='error'>
+             aria-label="show 17 new notifications"
+             color="inherit"
+             >
+              <Badge badgeContent={order} color='error'>
               <ShoppingCart className=' ms-6'/>
               </Badge>
             </IconButton>
+              </Link>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 ,marginLeft:'37px'}}>
